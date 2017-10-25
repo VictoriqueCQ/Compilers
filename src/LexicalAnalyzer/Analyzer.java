@@ -14,7 +14,6 @@ public class Analyzer {
     private static int number;
     //单词种别
     private static int code;
-
     //
     private static int p;
     //
@@ -46,13 +45,13 @@ public class Analyzer {
 
     private static void getInput() throws IOException {
         inputFile = "input.txt";
-        BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(new File(inputFile))));
-        String line = null;
-        char[] temp = null;
+        BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(inputFile))));
+        String line;
+        char[] temp;
         p = 0;
-        while ((line = br2.readLine()) != null) {
+        while ((line = br.readLine()) != null) {
             temp = line.toCharArray();
-            for (int i = 0; i < temp.length; i++) {
+            for (int i : temp) {
                 if (temp[i] == ' ' || temp[i] == '\t') {
                     continue;
                 }
@@ -61,7 +60,7 @@ public class Analyzer {
             input[p++] = '\n';
         }
         input[p] = '#';
-        br2.close();
+        br.close();
     }
 
     private static void setOutPut() throws IOException {
@@ -81,9 +80,8 @@ public class Analyzer {
     }
 
     private static void scanner() {
-        //当前读的字符
-        char ch;
         int sp;
+        char ch;
         word = new char[20];
         ch = input[p++];
         //可能是保留字或变量名（保留字优先）
@@ -310,8 +308,8 @@ public class Analyzer {
 
     private static String chTos(char[] c) {
         int len = 0;
-        for (int i = 0; i < c.length; i++) {
-            if (c[i] != '0') {
+        for (int i : c) {
+            if (c[i] != '\0') {
                 len++;
             }
         }
@@ -346,11 +344,11 @@ public class Analyzer {
                     outPut.add(new Token(code, chTos(word)));
                     break;
             }
-            try {
-                setOutPut();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
+        try {
+            setOutPut();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
