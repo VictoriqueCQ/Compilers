@@ -17,12 +17,24 @@ public class State {
 
     // This constructor is used for NFA
     public State(int Id) {
-
+        this.setStateId(Id);
+        this.setNextState(new HashMap <Character, ArrayList<State>> ());
+        this.setAcceptState(false);
     }
 
     // This constructor is used for DFA
     public State(Set<State> States, int Id) {
+        this.setStates(States);
+        this.setStateId(Id);
+        this.setNextState(new HashMap <Character, ArrayList<State>> ());
 
+        // find if there is final state in this set of states
+        for (State p : States) {
+            if (p.isAcceptState()) {
+                this.setAcceptState(true);
+                break;
+            }
+        }
     }
 
     // Add transition between states and insert into the arrayList
