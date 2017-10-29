@@ -1,0 +1,37 @@
+public class fibonacci{
+    long[][] f = new long[][]{{0,1},{1,1}};
+    public int getNthNumber1(int n) {
+        if(n == 0)
+            return 1;
+        if(n == 1)
+            return 1;
+        f = pow(n,f);
+
+    turn (int) f[1][1];
+    }
+
+    private long[][] pow(int n,long[][] f){
+        if(n == 1)
+            return f;
+
+        if(n == 2){
+            return fun(f,f);
+        }
+
+        if( n % 2 == 0){//偶数
+            f = pow(n/2,f);
+            return fun(f, f);
+        }else{
+            return fun(pow(n/2,f),pow(n/2 + 1,f));
+        }
+    }
+
+    private long[][] fun(long[][] f,long[][] m){
+        long[][] temp = new long[2][2];
+        temp[0][0] = (f[0][0]*m[0][0] + f[0][1]*m[1][0])%1000000007;
+        temp[0][1] = (f[0][0]*m[0][1] + f[0][1]*m[1][1])%1000000007;
+        temp[1][0] = (f[1][0]*m[0][0] + f[1][1]*m[1][0])%1000000007;
+        temp[1][1] = (f[1][0]*m[0][1] + f[1][1]*m[1][1])%1000000007;
+        return temp;
+    }
+}

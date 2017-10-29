@@ -5,13 +5,13 @@ public class Token {
     private String str;
     private String error;
 
-    public Token(int code, String str) {
+    Token(int code, String str) {
         this.code = code;
         this.str = str;
         this.error = null;
     }
 
-    public Token(String error) {
+    Token(String error) {
         this.error = error;
     }
 

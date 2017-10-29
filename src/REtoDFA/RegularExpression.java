@@ -5,26 +5,23 @@ import java.util.*;
 public class RegularExpression {
     private static int stateID = 0;
 
-    private static Stack<NFA> stackNfa = new Stack<NFA>();
+    private static Stack<NFA> stackNFA = new Stack<NFA>();
     private static Stack<Character> operator = new Stack<Character>();
 
     private static Set<State> set1 = new HashSet<State>();
     private static Set<State> set2 = new HashSet<State>();
 
-    // Set of inputs
+    //输入的集合
     private static Set<Character> input = new HashSet<Character>();
 
-    // Generates NFA using the regular expression
+    //用正则表达式生成NFA
     public static NFA generateNFA(String regular) {
-        // Generate regular expression with the concatenation
         regular = AddConcat(regular);
 
-        // Only inputs available
         input.add('a');
         input.add('b');
 
-        // Cleaning stacks
-        stackNfa.clear();
+        stackNFA.clear();
         operator.clear();
 
         for (int i = 0; i < regular.length(); i++) {
@@ -43,7 +40,7 @@ public class RegularExpression {
                     doOperation();
                 }
 
-                // Pop the '(' left parenthesis
+                //左括号弹出
                 operator.pop();
 
             } else {
@@ -55,13 +52,13 @@ public class RegularExpression {
             }
         }
 
-        // Clean the remaining elements in the stack
+        //清除堆栈中所有元素
         while (!operator.isEmpty()) {
             doOperation();
         }
 
-        // Get the complete nfa
-        NFA completeNfa = stackNfa.pop();
+        //获得NFA
+        NFA completeNfa = stackNFA.pop();
 
         // add the accpeting state to the end of NFA
         completeNfa.getNFA().get(completeNfa.getNFA().size() - 1).setAcceptState(true);
@@ -123,7 +120,7 @@ public class RegularExpression {
     // Do the star operation
     private static void star() {
         // Retrieve top NFA from Stack
-        NFA nfa = stackNfa.pop();
+        NFA nfa = stackNFA.pop();
 
         // Create states for star operation
         State start = new State(stateID++);
@@ -140,14 +137,14 @@ public class RegularExpression {
         nfa.getNFA().addLast(end);
 
         // Put nfa back in the stackNfa
-        stackNfa.push(nfa);
+        stackNFA.push(nfa);
     }
 
     // Do the concatenation operation
     private static void concatenation() {
         // retrieve nfa 1 and 2 from stackNfa
-        NFA nfa2 = stackNfa.pop();
-        NFA nfa1 = stackNfa.pop();
+        NFA nfa2 = stackNFA.pop();
+        NFA nfa1 = stackNFA.pop();
 
         // Add transition to the end of nfa 1 to the begin of nfa 2
         // the transition uses empty string
@@ -159,14 +156,14 @@ public class RegularExpression {
         }
 
         // Put nfa back to stackNfa
-        stackNfa.push(nfa1);
+        stackNFA.push(nfa1);
     }
 
     // Makes union of sub NFA 1 with sub NFA 2
     private static void union() {
         // Load two NFA in stack into variables
-        NFA nfa2 = stackNfa.pop();
-        NFA nfa1 = stackNfa.pop();
+        NFA nfa2 = stackNFA.pop();
+        NFA nfa1 = stackNFA.pop();
 
         // Create states for union operation
         State start = new State(stateID++);
@@ -190,7 +187,7 @@ public class RegularExpression {
             nfa1.getNFA().addLast(s);
         }
         // Put NFA back to stack
-        stackNfa.push(nfa1);
+        stackNFA.push(nfa1);
     }
 
     // Push input symbol into stackNfa
@@ -209,7 +206,7 @@ public class RegularExpression {
         nfa.getNFA().addLast(s1);
 
         // Put NFA back to stackNfa
-        stackNfa.push(nfa);
+        stackNFA.push(nfa);
     }
 
     // add "." when is concatenation between to symbols that
