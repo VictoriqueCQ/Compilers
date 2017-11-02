@@ -40,52 +40,53 @@ public class Analyzer {
             "catch",
             "switch",
             "case",
-            "for"
+            "for",
+            "return"
     };
 
-    private static String[] operators = {
-            "+",
-            "+=",
-            "-",
-            "-=",
-            "*",
-            "*=",
-            "/",
-            "/=",
-            "=",
-            "==",
-            "&",
-            "|",
-            "&&",
-            "||",
-            "!",
-            "!=",
-            "<",
-            "<=",
-            ">",
-            ">="
-    };
-    private static String[] notes = {
-            "//",
-            "/*",
-            "*/"
-    };
-    private static String[] others = {
-            "(",
-            ")",
-            "[",
-            "]",
-            "{",
-            "}",
-            ";",
-            ",",
-            ":",
-            "'",
-            "\""
-    };
+//    private static String[] operators = {
+//            "+",
+//            "+=",
+//            "-",
+//            "-=",
+//            "*",
+//            "*=",
+//            "/",
+//            "/=",
+//            "=",
+//            "==",
+//            "&",
+//            "|",
+//            "&&",
+//            "||",
+//            "!",
+//            "!=",
+//            "<",
+//            "<=",
+//            ">",
+//            ">="
+//    };
+//    private static String[] notes = {
+//            "//",
+//            "/*",
+//            "*/"
+//    };
+//    private static String[] others = {
+//            "(",
+//            ")",
+//            "[",
+//            "]",
+//            "{",
+//            "}",
+//            ";",
+//            ",",
+//            ":",
+//            "'",
+//            "\""
+//    };
 
     private static void getInput() throws IOException {
-        inputFile = "input.txt";
+        inputFile = "input1.txt";
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(new File(inputFile))));
         String line;
@@ -106,7 +107,6 @@ public class Analyzer {
     }
 
     private static void output() throws IOException {
-        String[] splits = inputFile.split("\\.");
         File outputFile = new File("output.txt");
         if (!outputFile.exists()) {
             outputFile.createNewFile();
@@ -137,7 +137,7 @@ public class Analyzer {
                 ch = input[p++];
                 word[sp] = '\0';
                 for (int i = 0; i < reservedWords.length; i++) {
-                    if (ch2s(word).equals(reservedWords[i])) {
+                    if (typeConversion(word).equals(reservedWords[i])) {
                         code = i + 1;
                         p--;
                         return;
@@ -348,6 +348,9 @@ public class Analyzer {
                 case '\n':
                     code = -1;
                     break;
+                case '%':
+                    code = 58;
+                    break;
                 default:
                     code = -3;
                     break;
@@ -355,7 +358,7 @@ public class Analyzer {
         }
     }
 
-    private static String ch2s(char[] c) {
+    private static String typeConversion(char[] c) {
         int len = 0;
         for (int i = 0; i < c.length; i++) {
             if (c[i] != '\0')
@@ -372,7 +375,7 @@ public class Analyzer {
         }
         p = 0;
         int row = 1;
-        do {
+        while (input[p] != '#') {
             scanner();
             switch (code) {
                 case 57:
@@ -393,10 +396,10 @@ public class Analyzer {
                     break;
                 default:
                     //一般单词符号
-                    output.add(new Token(code, ch2s(word)));
+                    output.add(new Token(code, typeConversion(word)));
                     break;
             }
-        } while (input[p] != '#');
+        }
         try {
             output();
         } catch (IOException e) {
