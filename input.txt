@@ -7,7 +7,7 @@ public class fibonacci{
             return 1;
         f = pow(n,f);
 
-    turn (int) f[1][1];
+        return (int) f[1][1];
     }
 
     private long[][] pow(int n,long[][] f){

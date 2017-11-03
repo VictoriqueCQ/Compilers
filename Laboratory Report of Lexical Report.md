@@ -108,7 +108,7 @@ Laboratory Report of Lexical Analyzer
 | ------------ | --------------- | ---------------------- | --------------- |
 | class        | 1               | =                      | 30              |
 | public       | 2               | ==                     | 31              |
-| protected    | 3               | &                      | 32              |
+| new          | 3               | &                      | 32              |
 | private      | 4               | &&                     | 33              |
 | void         | 5               | \|                     | 34              |
 | static       | 6               | \|\|                   | 35              |
@@ -156,8 +156,10 @@ output.txt
 
 ​	Thinking about how to design of corresponding table of token-name code and word symbols wastes a lot of time. I got the idea on CSDN. In addition, there are many reserved words and Function names which I didn't add to data structures. As a result of this, many programs cannot be analyzed by this lexical analyzer.
 
+​	And I found that it cannot recognize object initialization. Unfortunately, it will waste a lot of time to change the corresponding table of token-name code and word symbols, so I just delete the reserved word "protected" and add "new".
+
 ​	What's more, I think the quality of my code is not good. When I rewrite some codes in order to improve quality, faults will be found when the program is running. And code redundancy appears.
 
 ### 10. Feelings and comments
 
-​	There is a long way to design a satisfying lexical analyzer. This practice is just a beginning.
+​	There is a long way to design a satisfying lexical analyzer. This practice is just a beginning. There may be still some bugs remain to be debugged or found.

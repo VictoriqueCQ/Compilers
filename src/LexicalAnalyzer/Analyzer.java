@@ -23,7 +23,7 @@ public class Analyzer {
     private static String[] reservedWords = {
             "class",
             "public",
-            "protected",
+            "new",
             "private",
             "void",
             "static",
@@ -41,7 +41,7 @@ public class Analyzer {
             "switch",
             "case",
             "for",
-            "return"
+            "return",
     };
 
 //    private static String[] operators = {
@@ -127,7 +127,7 @@ public class Analyzer {
 //    };
 
     private static void getInput() throws IOException {
-        inputFile = "input1.txt";
+        inputFile = "input.txt";
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(new File(inputFile))));
         String line;
