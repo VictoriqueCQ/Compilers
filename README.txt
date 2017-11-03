@@ -1,0 +1,4 @@
+此java工程中
+src中的是lexical源代码
+Laboratory Report of Lexical Report是实验报告
+由于是markdown文件，相关截图均在本文件夹中

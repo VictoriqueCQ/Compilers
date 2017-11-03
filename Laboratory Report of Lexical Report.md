@@ -1,4 +1,4 @@
-# Laboratory Report of Lexical Analyzer 
+Laboratory Report of Lexical Analyzer
 
 #### 151250209 朱晨乾
 
@@ -12,24 +12,23 @@
 
 ### Catalog
 
-1. Purpose
+1. Motivation/Aim
 2. Content description
-3. Method
-4. Hypothesis
-5. Description of finite automata
-6. Key data structures
-7. Kernel algorithms
-8. Screenshots
-9. Problems and feelings
+3. ideas/Methods
+4. Assumption
+5. Related FA description
+6. Description of important Data Structure
+7. Description of core Algorithms
+8. Use cases on running
+9. Problems occurred and related solutions
+10. Feelings and comments
 
 
 
 
 
 
-
-
-### 1. Purpose
+### 1. Motivation/Aim
 
 ​	Writing a program of lexical analyzer. We can do lexical analyzing on sentences so that we can understand the process of lexical analyzing better.
 
@@ -37,45 +36,45 @@
 
 ​	The program is writted by Java. It reads a text file and does lexical analyzing on the content of the file. The program generally realizes the lexical parsing on Java programs. It can recognize reserved words, operators, boundary characters, annotations, variable names(the priority of reserved words is higher than variable names). The output format is the sequence of token which looks like <token-name code, word symbols>, and the program can do exception handling on unrecognized character, integer variables which is overflowing and oversized files.
 
-### 3. Method
+### 3. Ideas/Methods
 
- 	1. Write regular expressions for the word symbols needed to be recognized.
-	2. Constructs the NFA corresponding to regular expressions.
-	3. Merge all NFA and simplify it into DFA.
-	4. Write programs based on DFA.
-	5. The specific implementation of the code: read an input character first, determine its possible categories, and then read the next . If it has been identified, it will be  added to the output linklist. The redundant characters need to be returned, otherwise the next character will be read.
+       	1. Write regular expressions for the word symbols needed to be recognized.
+     	2. Constructs the NFA corresponding to regular expressions.
+     	3. Merge all NFA and simplify it into DFA.
+     	4. Write programs based on DFA.
+     	5. The specific implementation of the code: read an input character first, determine its possible categories, and then read the next . If it has been identified, it will be  added to the output linklist. The redundant characters need to be returned, otherwise the next character will be read.
 
-### 4. Hypothesis
+### 4. Assumption
 
 ​	Assume that the input Java program is right, which means it contains valid reserved words and operators.
 
-###5. Description of finite automata
+###5. Related FA description
 
 ![Description of finite automata][Description of finite automata]
 
-[Description of finite automata]: C:\Users\朱晨乾\IdeaProjects\Compilers\有限自动机描述.jpg
+[Description of finite automata]: 有限自动机描述.jpg
 
-### 6. Key data structures
+### 6. Description of important Data Structures
 
 ![Key data structure 1][Key data structure 1]
 
-[Key data structure 1]: C:\Users\朱晨乾\IdeaProjects\Compilers\重要数据结构1.jpg
+[Key data structure 1]: 重要数据结构1.png
 
 ![Key data structure 2][Key data structure 2]
 
-[Key data structure 2]: C:\Users\朱晨乾\IdeaProjects\Compilers\重要数据结构2.jpg
+[Key data structure 2]: 重要数据结构2.png
 
 ![Key data structure 3][Key data structure 3]
 
-[Key data structure 3]: C:\Users\朱晨乾\IdeaProjects\Compilers\重要数据结构3.jpg
+[Key data structure 3]: 重要数据结构3.jpg
 
 
 
 ![Key data structures 4][Key data structure 4]
 
-[Key data structure 4]: C:\Users\朱晨乾\IdeaProjects\Compilers\重要数据结构4.jpg
+[Key data structure 4]: 重要数据结构4.jpg
 
-### 7.  Kernel algorithms
+### 7.  Description of core Algorithms
 
 ​	Main Method of the program:
 
@@ -83,19 +82,19 @@
 
 ![getInput][getInput]
 
-[getInput]: C:\Users\朱晨乾\IdeaProjects\Compilers\getInput.jpg
+[getInput]: getInput.png
 
 ​	output()——output the result to the console and output file.
 
 ![output][output]
 
-[output]: C:\Users\朱晨乾\IdeaProjects\Compilers\output.jpg
+[output]: output.png
 
 ​	scanner()——scan input for analysis. This method includes the kernel algorithm.
 
 ![scanner][scanner]
 
-[scanner]: C:\Users\朱晨乾\IdeaProjects\Compilers\scanner.jpg
+[scanner]: scanner.png
 
 ​	The Scanner () method contains the kernel algorithm for lexical analysis, and only one word symbol can be recognized at a time, so the program analyzes the entire input by calling the scanner () method repeatedly.
 ​	By reading the first character type, the possible type of the next word symbol is predicted. When reading English characters, they may be reserved or variable name (type A); when reading numbers,  they are constants (positive) (type B); when reading other characters (type C), may be operators or boundary characters or annotations; if it is a ' - ' character, and the word behind is number, then they form a negative number. In addition, it is a newline character or undefined character.
@@ -127,7 +126,7 @@
 | switch       | 18              | [                      | 47              |
 | case         | 19              | ]                      | 48              |
 | for          | 20              | {                      | 49              |
-|              | 21              | }                      | 50              |
+| return       | 21              | }                      | 50              |
 | +            | 22              | ,                      | 51              |
 | +=           | 23              | :                      | 52              |
 | -            | 24              | ;                      | 53              |
@@ -135,36 +134,30 @@
 | *            | 26              | "                      | 55              |
 | *=           | 27              | letter(letter\|digit)* | 56              |
 | /            | 28              | digitdigit             | 57              |
-| /=           | 29              |                        |                 |
+| /=           | 29              | %                      | 58              |
 
-### 8. Screenshots
+### 8. Use cases on running
 
 input.txt
 
 ![input.txt][inputtxt]
 
-[inputtxt]: C:\Users\朱晨乾\IdeaProjects\Compilers\inputtxt.jpg
+[inputtxt]: inputtxt.png
 
 output.txt
 
-![output.txt][outputtxt1]
+![output.txt][outputtxt]
 
 
 
-[outputtxt1]: C:\Users\朱晨乾\IdeaProjects\Compilers\outputtxt1.jpg
+[outputtxt]: outputtxt.png
 
-![output.txt][outputtxt2]
+### 9. Problems occurred and related solutions
 
-[outputtxt2]: C:\Users\朱晨乾\IdeaProjects\Compilers\outputtxt2.jpg
-
-![output.txt][outputtxt3]
-
-[outputtxt3]: C:\Users\朱晨乾\IdeaProjects\Compilers\outputtxt3.jpg
-
-### 9. Problems and feelings
-
-​	Thinking about how to design of corresponding table of token-name code and word symbols wastes a lot of time. In addition, there are many reserved words which I didn't add to data structures. As a result of this, many programs cannot be analyzed by this lexical analyzer.
+​	Thinking about how to design of corresponding table of token-name code and word symbols wastes a lot of time. I got the idea on CSDN. In addition, there are many reserved words and Function names which I didn't add to data structures. As a result of this, many programs cannot be analyzed by this lexical analyzer.
 
 ​	What's more, I think the quality of my code is not good. When I rewrite some codes in order to improve quality, faults will be found when the program is running. And code redundancy appears.
 
-​	There is a long way to design a satisfying lexical analyzer.
+### 10. Feelings and comments
+
+​	There is a long way to design a satisfying lexical analyzer. This practice is just a beginning.
