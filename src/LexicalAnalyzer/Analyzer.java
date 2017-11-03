@@ -85,9 +85,49 @@ public class Analyzer {
 //            "'",
 //            "\""
 //    };
+//    private static String[] operators = {
+//            "+",
+//            "+=",
+//            "-",
+//            "-=",
+//            "*",
+//            "*=",
+//            "/",
+//            "/=",
+//            "=",
+//            "==",
+//            "&",
+//            "|",
+//            "&&",
+//            "||",
+//            "!",
+//            "!=",
+//            "<",
+//            "<=",
+//            ">",
+//            ">="
+//    };
+//    private static String[] notes = {
+//            "//",
+//            "/*",
+//            "*/"
+//    };
+//    private static String[] others = {
+//            "(",
+//            ")",
+//            "[",
+//            "]",
+//            "{",
+//            "}",
+//            ";",
+//            ",",
+//            ":",
+//            "'",
+//            "\""
+//    };
 
     private static void getInput() throws IOException {
-        inputFile = "input.txt";
+        inputFile = "input1.txt";
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(new File(inputFile))));
         String line;
