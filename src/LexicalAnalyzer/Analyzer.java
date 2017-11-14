@@ -127,7 +127,7 @@ public class Analyzer {
 //    };
 
     private static void getInput() throws IOException {
-        inputFile = "input.txt";
+        inputFile = "Lab1_Resources//input.txt";
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 new FileInputStream(new File(inputFile))));
         String line;
@@ -148,7 +148,7 @@ public class Analyzer {
     }
 
     private static void output() throws IOException {
-        File outputFile = new File("output.txt");
+        File outputFile = new File("Lab1_Resources//output.txt");
         if (!outputFile.exists()) {
             outputFile.createNewFile();
         }
