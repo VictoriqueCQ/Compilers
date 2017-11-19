@@ -10,16 +10,16 @@
 
 ### Catalog
 
- 	1. Motivation/Aim
- 	2. Content description
- 	3. ideas/Methods
- 	4. Assumption
- 	5. Related FA description
- 	6. Description of important Data Structure
- 	7. Description of core Algorithms
- 	8. Use cases on running
- 	9. Problems occurred and related solutions
- 	10. Feelings and comments
+   	1. Motivation/Aim
+     2. Content description
+      3. ideas/Methods
+      4. Assumption
+      5. Related FA description
+      6. Description of important Data Structure
+      7. Description of core Algorithms
+      8. Use cases on running
+      9. Problems occurred and related solutions
+      10. Feelings and comments
 
 
 
@@ -35,18 +35,18 @@
 
 ​	Here is concrete grammar defined:
 
- 	1. General assignment statement. For example, a = 1*(2+3);(It only allows + and * to lower the complexity)
- 	2. if-else sentence. if(condition){statement}else{statement}
- 	3. while sentence. while(condition){statement}
- 	4. condition sentence. a==1||(b==2||c==3)(it only allows || to lower the complexity)
+   	1. General assignment statement. For example, i = 1*(1+1);(It only allows + and * to lower the complexity)
+     2. if-else sentence. if(condition){statement}else{statement}
+      3. while sentence. while(condition){statement}
+      4. condition sentence. i==1||(j==2||k==3)(it only allows || to lower the complexity)
 
 ### 3. Ideas/Methods
 
- 	1. Define a grammar for parsing.
- 	2. Do pretreatment on the grammar(Eliminate left recursion and ambiguity).
- 	3. structure prediction analysis table.
- 	4. Write code based on analysis table.
- 	5. The implementation of the code: analyze according to the input queue and the first element of the state stack. Do the match of terminal or the production of subitems of non-terminal.
+   	1. Define a grammar for parsing.
+     2. Do pretreatment on the grammar(Eliminate left recursion and ambiguity).
+      3. structure prediction analysis table.
+      4. Write code based on analysis table.
+      5. The implementation of the code: analyze according to the input queue and the first element of the state stack. Do the match of terminal or the production of subitems of non-terminal.
 
 ### 4. Assumption
 
@@ -58,7 +58,7 @@
 
 ​	Here is the user-defined grammar:
 
- 	0. S -> id=E; 
+  0.  S -> id=E; 
 
 1. S -> if(C){S}else{S} 
 2. S -> while(C){S} 
@@ -77,7 +77,7 @@
 15. D -> (C) 
 16. D -> id==num 
 
-​	prediction analysis table
+   ​prediction analysis table
 
 |      | id   | =    | ;    | if   | (    | )    | {    | }    |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -105,6 +105,20 @@
 
 ### 6. Description of important Data Structure
 
+![important ds1][important ds1]
+
+[important ds1]: 重要的数据结构1.png
+
+![important ds2][important ds2]
+
+[important ds2]: 重要的数据结构2.png
+
+![important ds3][important ds3]
+
+[important ds3]: 重要的数据结构3.png
+
+
+
 
 
 ### 7. Description of Core Algorithms
@@ -119,21 +133,51 @@
 
 ​	Here is parse() method
 
+![the method of parse()][the method of parse()]
 
+[the method of parse()]: 核心算法1.png
 
 ​	Here is generate() method
 
+![the method of generate()1][the method of generate()1]
+
+[the method of generate()1]: 核心算法2.png
+
+![the method of generate()2][the method of generate()2]
+
+[the method of generate()2]: 核心算法3.png
+
+![the method of generate()3][the method of generate()3]
+
+[the method of generate()3]: 核心算法4.png
 
 
-Explanation of the program: main data structure contains the input queue and the state stack. First, put the token sequence into the queue, put the first non-terminal into the stack. Read the first element of the queue and the stack and do analyzing. If the top element of the stack is non-terminal, then call the method generate(), structure subitem and put the subitem into stack. Else if it is terminal, match with the element of the queue. If they matchs, pop them. Loop until there is no output element. If it is failed to check the table or doesn't match terminal, output error.
+
+Comments: important data structure contains the input queue and the state stack. First, put the token sequence into the queue, put the first non-terminal into the stack. Read the first element of the queue and the stack and do analyzing. If the top element of the stack is non-terminal, then call the method generate(), structure sub item and put the sub item into stack. Else if it is a terminal, match with the element of the queue. If they match, pop them. Loop until there is no output element. If it is failed to check the table or doesn't match terminal, output error.
 
 ### 8. Use case on running
 
 input.txt:
 
+![input][input]
+
+[input]: input.png
+
+output.txt:
+
+![output1][output1]
+
+[output1]: output.png
+
+![output2][output2]
+
+[output2]: output2.png
+
+![output3][output3]
+
+[output3]: output3.png
 
 
-output,txt:
 
 
 

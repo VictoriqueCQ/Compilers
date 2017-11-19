@@ -39,7 +39,7 @@ public class Token {
     static final int NOT = 36;
     static final int NOT_EQUAL = 37;
     static final int LESS = 38;
-    public static final int LESS_EQUAL = 39;
+    static final int LESS_EQUAL = 39;
     static final int GREATER = 40;
     static final int GREATER_EQUAL = 41;
     static final int DOUBLE_SLASH = 42;
